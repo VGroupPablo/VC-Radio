@@ -1,0 +1,19 @@
+	['radio'] = {
+		label = 'Motorola Dp4800',
+		stack = false,
+		description = "",
+		weight = 420,
+		client = {
+			event = 'Vlore-Radio:OpenRadio',
+		},
+	},
+
+	['radio2'] = {
+		label = 'Motorola Dp4800E',
+		stack = false,
+		description = "",
+		weight = 420,
+		client = {
+			event = 'Vlore-Radio:OpenRadio',
+		},
+	},
