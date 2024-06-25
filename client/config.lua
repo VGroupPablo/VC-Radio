@@ -1,5 +1,7 @@
 Config = {}
 
+Config.UseCommand = false
+
 Config.animDict, Config.animAnim = "anim@radio_left", "radio_left_clip"
 Config.AttachArguments ={
     Bone = 60309,

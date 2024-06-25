@@ -10,7 +10,19 @@ RegisterNetEvent("Vlore-Radio:OpenRadio", function(data, slot)
 		switchRadioFocus(true, not restricionAccess)
 	end
 end)
+if Config.UseCommand then
+	RegisterCommand('radio', function()
+		local data = {}
+		data.name = 'radio'
+		TriggerEvent('Vlore-Radio:OpenRadio', data)
+	end)
 
+	RegisterCommand('radio2', function()
+		local data = {}
+		data.name = 'radio2'
+		TriggerEvent('Vlore-Radio:OpenRadio', data)
+	end)
+end
 
 function switchRadioFocus(bool, restriction)
 	local animDict, animAnim = Config.animDict, Config.animAnim
@@ -61,7 +73,6 @@ function switchRadioFocus(bool, restriction)
         DisableControlAction(2, 1, true)
         DisableControlAction(2, 2, true)
         DisableControlAction(2, 13, true)
-		DisableControlAction(2, 21, true)
 		DisableControlAction(2, 22, true)
         DisableControlAction(2, 24, true)
         DisableControlAction(2, 200, true)
@@ -94,4 +105,22 @@ end)
 
 RegisterNUICallback('hideRadio', function()
 	switchRadioFocus(false)
+end)
+
+RegisterNUICallback('MakeACall', function(data)
+	local channel = data['channelid']
+	TriggerServerEvent('Vlore-Radio:GetAllPlayers', channel, 'Vlore-Radio:CallWasMade')
+end)
+
+RegisterNetEvent('Vlore-Radio:CallWasMade', function()
+	SendNuiMessage(json.encode({
+		action = "CallWasMade",
+	}))
+end)
+
+
+RegisterNetEvent('Vlore-Radio:CallWasMade', function()
+	SendNuiMessage(json.encode({
+		action = "CallWasMade",
+	}))
 end)
